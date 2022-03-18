@@ -1,11 +1,12 @@
 import { View, Text } from "react-native";
 import React from "react";
+import { Center } from "native-base";
 
 const Scan = () => {
   return (
-    <View>
+    <Center>
       <Text>Scan</Text>
-    </View>
+    </Center>
   );
 };
 
