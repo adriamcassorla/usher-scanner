@@ -6,9 +6,9 @@ import { NavigationContainer } from "@react-navigation/native";
 import Home from "./Pages/Home";
 import Scan from "./Pages/Scan";
 
-type RootStackParamList = {
+export type RootStackParamList = {
   Home: undefined;
-  Scan: undefined;
+  Scan: { show: Show };
 };
 
 const RootStack = createStackNavigator<RootStackParamList>();
@@ -35,7 +35,15 @@ export const Content = () => {
   return (
     <NavigationContainer theme={theme}>
       <RootStack.Navigator initialRouteName="Home">
-        <RootStack.Screen name="Home" component={Home} />
+        <RootStack.Screen
+          name="Home"
+          component={Home}
+          options={{
+            headerStyle: {
+              display: "none",
+            },
+          }}
+        />
         <RootStack.Screen name="Scan" component={Scan} />
       </RootStack.Navigator>
     </NavigationContainer>

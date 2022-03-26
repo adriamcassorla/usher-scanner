@@ -12,14 +12,18 @@ import { BarCodeScanner } from "expo-barcode-scanner";
 import { validateTicket } from "../../Services/api";
 import moment from "moment";
 import { BlurView } from "expo-blur";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { RootStackParamList } from "..";
 
-const Scan = ({ navigation, route }) => {
+type Props = NativeStackScreenProps<RootStackParamList, "Scan">;
+
+const Scan = ({ route }: Props) => {
   const [hasPermission, setHasPermission] = useState(false);
   const [scanned, setScanned] = useState(false);
   const toast = useToast();
 
   const { show } = route.params;
-  const date = moment.unix(show.date / 1000).fromNow();
+  const date = moment.unix(+show.date / 1000).fromNow();
 
   // Get or check camera permission
   useEffect(() => {
@@ -40,6 +44,7 @@ const Scan = ({ navigation, route }) => {
           duration: 5000,
           mx: 10,
           mt: "50px",
+          onCloseComplete: () => setScanned(false),
         });
       } else {
         toast.show({
@@ -50,6 +55,7 @@ const Scan = ({ navigation, route }) => {
           duration: 10000,
           mx: 10,
           mt: "50px",
+          onCloseComplete: () => setScanned(false),
         });
       }
     }

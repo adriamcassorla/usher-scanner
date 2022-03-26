@@ -1,10 +1,13 @@
 import { Flex, VStack, FormControl, Input, Button } from "native-base";
 import KeyboardSpacer from "react-native-keyboard-spacer";
 import React, { useState } from "react";
-import { NavigationRouteContext } from "@react-navigation/native";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { validateShow } from "../../Services/api";
+import { RootStackParamList } from "..";
 
-const Home = ({ navigation }) => {
+type Props = NativeStackScreenProps<RootStackParamList, "Home">;
+
+const Home = ({ navigation }: Props) => {
   const [formData, setData] = useState({ id: "" });
   const [errors, setErrors] = useState({ id: "" });
   const [show, setShow] = useState<Show | null>(null);
