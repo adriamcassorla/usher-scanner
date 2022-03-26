@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Center, Flex, Heading } from "native-base";
+import { useToken } from "native-base";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 
@@ -14,33 +14,27 @@ type RootStackParamList = {
 const RootStack = createStackNavigator<RootStackParamList>();
 
 export const Content = () => {
+  const [primary, background, card, text, notification] = useToken("colors", [
+    "primary.600",
+    "dark.50",
+    "dark.100",
+    "light.100",
+    "tertiary.500",
+  ]);
+  const theme = {
+    dark: false,
+    colors: {
+      primary,
+      background,
+      card,
+      text,
+      border: "",
+      notification,
+    },
+  };
   return (
-    <NavigationContainer>
-      <RootStack.Navigator
-        initialRouteName="Home"
-        screenOptions={{
-          header: ({ navigation, back }) => {
-            return (
-              <Flex
-                w={"100%"}
-                h={"100"}
-                bgColor={"dark.100"}
-                justifyContent={"flex-end"}
-                alignItems={"center"}
-                pb={3}
-                shadow={10}
-              >
-                <Heading color={"primary.500"} size={"2xl"}>
-                  Usher
-                </Heading>
-                {back ? (
-                  <Button onTouchEnd={navigation.goBack}>Back</Button>
-                ) : null}
-              </Flex>
-            );
-          },
-        }}
-      >
+    <NavigationContainer theme={theme}>
+      <RootStack.Navigator initialRouteName="Home">
         <RootStack.Screen name="Home" component={Home} />
         <RootStack.Screen name="Scan" component={Scan} />
       </RootStack.Navigator>
