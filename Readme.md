@@ -10,11 +10,6 @@ This repo corresponds to the final User app of the project. It can be used toget
 * [Usher Client](https://github.com/adrian-s-db/usher-client) - Client-side mobile native app for final users.
 * [Usher Dashboard](https://github.com/nicolo413/usher-dashboard) - Client-side desktop app for event promoters.
 
-## Screenshots
-<p align="center">
-  <img style='width:80%' src="" />
-</p>
-
 
 ## Getting started
 
